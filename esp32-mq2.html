@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESP32 MQ2 Gas Sensor Dashboard</title>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><i class="fas fa-gas-pump"></i> ESP32 MQ2 Dashboard</h1>
+      <p class="subtitle">Real-time Gas Sensor Monitoring System</p>
+    </div>
+
+    <div class="alert-banner" id="alertBanner">
+      <i class="fas fa-exclamation-triangle"></i>
+      <strong>PERINGATAN BAHAYA!</strong> Kadar gas mencapai level berbahaya!
+    </div>
+
+    <div class="dashboard">
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-tachometer-alt"></i>
+        </div>
+        <div class="card-title">Nilai Gas (MQ2)</div>
+        <div class="card-value" id="mq2">
+          <span class="loading"></span>
+        </div>
+        
+        <div class="gauge-container">
+          <div class="gauge">
+            <div class="gauge-needle" id="gaugeNeedle"></div>
+            <div class="gauge-value" id="gaugeValue">--</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card status-card">
+        <div class="card-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="card-title">Status Kondisi</div>
+        <div class="card-value" id="gasStatus">--</div>
+        
+        <div class="connection-status">
+          <div class="status-indicator" id="statusIndicator"></div>
+          <span id="connectionStatus">Menghubungkan...</span>
+        </div>
+        
+        <div class="timestamp" id="lastUpdate">
+          <i class="fas fa-clock"></i> --
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="card-title">Informasi Sensor</div>
+        <div class="info-grid">
+          <div class="info-item">
+            <i class="fas fa-thermometer-half info-icon"></i>
+            <span>Sensor MQ2</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-wifi info-icon"></i>
+            <span>MQTT Protocol</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-microchip info-icon"></i>
+            <span>ESP32 MCU</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-bolt info-icon"></i>
+            <span>Real-time Data</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="data-history">
+      <h3><i class="fas fa-history"></i> Riwayat Data Terbaru</h3>
+      <div id="historyContainer">
+        <div class="history-item">
+          <span>Belum ada data...</span>
+          <span>--</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sensor-info">
+      <h3><i class="fas fa-info-circle"></i> Informasi Sensor MQ2</h3>
+      <p><strong>Aman:</strong> 0 - 1000 ppm | <strong>Waspada:</strong> 1001 - 2000 ppm | <strong>Bahaya:</strong> > 2000 ppm</p>
+      <p>Sensor MQ2 dapat mendeteksi gas mudah terbakar seperti LPG, propana, metana, alkohol, hidrogen, dan asap.</p>
+    </div>
+  </div>
+
+  <script src="script.js">
+    
+  </script>
+</body>
+</html>
